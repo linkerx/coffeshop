@@ -1,0 +1,53 @@
+# AGNOS-CHALLENGE ENVIRONMENT
+version: '3'
+
+services:
+
+  react: 
+    image: node:16
+    restart: always
+    volumes:
+     - ./src/react:/app
+    working_dir: /app
+    command: ["npm","run","start"]
+    environment:
+      NODE_ENV: development
+      NODE_PATH: ./src
+      REACT_APP_BACKEND_URL: '${BACKEND_URL}'
+    ports:
+     - "${FRONTEND_PORT}:3000"
+
+  node:
+    image: node:16
+    restart: always
+    volumes:
+     - ./src/node:/app
+    working_dir: /app
+    command: ["npm","run","dev"]
+    environment:
+      NODE_ENV: development
+      DB_NAME: '${DATABASE_NAME}'
+      DB_USER: '${DATABASE_USER}'
+      DB_PASSWORD: '${DATABASE_PASS}'
+    ports:
+     - "${BACKEND_PORT}:3000"
+
+  postgres:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: '${DATABASE_PASS}'
+      POSTGRES_USER: '${DATABASE_USER}'
+      POSTGRES_DB: '${DATABASE_NAME}'
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+
+  dbadmin:
+    image: einfallstoll/phppgadmin
+    restart: always
+    environment:
+      POSTGRES_HOST: '${DATABASE_HOST}'
+      POSTGRES_DAFAULTDB: '${DATABASE_NAME}'
+    ports:
+     - '${DBADMIN_PORT}:80'

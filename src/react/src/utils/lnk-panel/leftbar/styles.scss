@@ -1,0 +1,31 @@
+@import 'styles/variables/colors.scss';
+@import '../panel-sizes.scss';
+
+nav#leftbar {
+  position: relative;
+  clear:both;
+  background-color: $background-2;
+  border-right: 1px solid $border-1;
+  width: $panel-leftbar-width;
+  height: 100vh;
+  box-sizing: border-box;
+  margin-left: -#{$panel-leftbar-width};
+}
+
+nav#leftbar.opened {
+  margin-left: 0;
+  transition: margin-left 1s;
+}
+
+nav#leftbar.closed {
+  margin-left: -#{$panel-leftbar-width};
+  transition: margin-left 1s;
+}
+
+nav#leftbar.header_closed {
+  height: 100vh;
+}
+
+nav#leftbar.header_opened {
+  height: calc(100vh - #{$panel-header-height});
+}

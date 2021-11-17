@@ -1,0 +1,14 @@
+section#panel header .notifications {
+  float: right;
+  margin-right: 20px;
+  margin-top: 22px;
+}
+
+section#panel header .notifications i {
+  font-size: 16px;
+  cursor:pointer;
+}
+
+section#panel header .notifications i:hover {
+  color: #888;
+}

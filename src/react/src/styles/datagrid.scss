@@ -1,0 +1,17 @@
+table.datagrid th {
+    background-color: #aaa;
+}
+
+table.datagrid td {
+    padding: 3px;
+}
+
+table.datagrid td.input {
+    padding: 0;
+}
+
+table.datagrid td.input input {
+    margin: 0;
+    border: 0;
+    width: 100%;
+}

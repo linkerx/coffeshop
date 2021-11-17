@@ -1,0 +1,32 @@
+@import 'styles/variables/mqueries.scss';
+@import 'styles/variables/colors.scss';
+
+body {
+  color: $text;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper-central {
+  position:relative;
+  margin: auto;
+  height:100%;
+}
+
+a {
+    text-decoration: none;
+    color: $color-2;
+}
+
+a:hover {
+    color: $color-3;
+}
+
+label {
+  font-weight: bold;
+  padding-top: 3px;
+  font-size: 1.2em;
+}
+
+@import 'datagrid.scss';

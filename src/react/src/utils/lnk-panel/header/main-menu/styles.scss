@@ -1,0 +1,33 @@
+@import 'styles/variables/colors.scss';
+
+nav#main-menu {
+  float: right;
+  margin-top: 20px;
+}
+
+nav#main-menu .items i {
+  float:left;
+}
+
+nav#main-menu ul {
+  float:left;
+  padding-left:20px;
+  display:flex;
+  flex-wrap: nowrap;
+}
+
+nav#main-menu li {
+  list-style: none;
+  margin-right: 15px;
+}
+
+nav#main-menu li a{
+  color: #aaa;
+  text-decoration: none;
+  font-weight:bold;
+  font-size:1.05em;
+}
+
+nav#main-menu li a.active {
+  color: $color-3;
+}

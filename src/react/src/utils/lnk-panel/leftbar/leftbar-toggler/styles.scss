@@ -1,0 +1,23 @@
+#leftbar.opened .leftbar-toggler {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #aaa;
+}
+
+#leftbar.closed .leftbar-toggler {
+  position: absolute;
+  top: 5px;
+  right: -25px;
+  z-index: 50;
+}
+
+
+#leftbar .leftbar-toggler i {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#leftbar .leftbar-toggler i:hover {
+  color: #888;
+}

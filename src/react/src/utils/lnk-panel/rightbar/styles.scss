@@ -1,0 +1,30 @@
+@import 'styles/variables/colors.scss';
+@import '../panel-sizes.scss';
+
+nav#rightbar {
+  clear:both;
+  background-color: $background-2;
+  border-left: 1px solid $border-1;
+  width: $panel-rightbar-width;
+  height: 100vh;
+  box-sizing: border-box;
+  margin-right: -#{$panel-rightbar-width};
+}
+
+nav#rightbar.opened {
+  margin-right: 0;
+  transition: margin-right 1s;
+}
+
+nav#rightbar.closed {
+  margin-right: -#{$panel-rightbar-width};
+  transition: margin-right 1s;
+}
+
+nav#rightbar.header_closed {
+  height: 100vh;
+}
+
+nav#rightbar.header_opened {
+  height: calc(100vh - #{$panel-header-height});
+}
