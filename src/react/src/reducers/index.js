@@ -10,6 +10,10 @@ import RightBarEnabledReducer from './panel/rightbar/enabled';
 
 /* products */
 import MealTypesReducer from './products/mealtypes';
+import ProductsReducer from './products/products';
+
+/* order */
+import OrderReducer from './order/order';
 
 const rootReducer = combineReducers({
   /* panel */
@@ -21,7 +25,9 @@ const rootReducer = combineReducers({
   rightbar_enabled: RightBarEnabledReducer,
 
   /* products */
-  mealTypes: MealTypesReducer
+  mealTypes: MealTypesReducer,
+  products: ProductsReducer,
+  order: OrderReducer,
 });
 
 export default rootReducer;

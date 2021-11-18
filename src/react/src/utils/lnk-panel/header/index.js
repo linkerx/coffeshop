@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom'
 import './styles.scss';
 
 import LnkPanelLogo from './logo';
-import LnkPanelMainMenu from './main-menu';
+//import LnkPanelMainMenu from './main-menu';
+import OrderBill from './order-bill';
 
 class LnkPanelHeader extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class LnkPanelHeader extends React.Component {
       <header className={styleClass}>
           <div className='wrapper'>
             <LnkPanelLogo />
-            <LnkPanelMainMenu />
+            <OrderBill />
           </div>
       </header>
     )

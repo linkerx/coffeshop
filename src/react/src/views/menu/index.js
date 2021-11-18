@@ -8,6 +8,9 @@ import { disableRightBar, closeRightBar } from 'actions/panel/rightbar';
 import { openHeader } from 'actions/panel/header';
 
 import { getMealTypes } from 'actions/products/mealTypes';
+import { getProducts } from 'actions/products/products';
+import { addProduct } from 'actions/order/order';
+
 
 import './styles.scss';
 import { __esModule } from 'react-router-dom/cjs/react-router-dom.min';
@@ -18,10 +21,13 @@ class Menu extends React.Component {
         super(props);
 
         this.state = {
-            activeMealType: 0
+            productsFilter: {
+                mealTypeId: 0
+            },
         }
 
         this.changeType = this.changeType.bind(this);
+        this.addProductToOrder = this.addProductToOrder.bind(this);
     }
 
     componentDidMount(){
@@ -30,22 +36,29 @@ class Menu extends React.Component {
         this.props.closeLeftBar();
         this.props.disableRightBar();
         this.props.closeRightBar();
-
         this.props.getMealTypes();
     }
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.mealTypes !== this.props.mealTypes && this.props.mealTypes.length > 0) {
             this.setState({
-                activeMealType: this.props.mealTypes[0].id
+                productsFilter: {mealTypeId: this.props.mealTypes[0].id}
             }); 
         }
+        if(prevState.productsFilter !== this.state.productsFilter ) {
+            this.props.getProducts(this.state.productsFilter);
+        }
+
     }
 
     changeType(id) {
         this.setState({
-            activeMealType: id 
+            productsFilter: {mealTypeId: id} 
         })
+    }
+
+    addProductToOrder(item) {
+        this.props.addProduct(item);
     }
 
     render() {
@@ -54,15 +67,22 @@ class Menu extends React.Component {
                 <nav className='sections'>
                     <ul>
                         { this.props.mealTypes.map((item) => {
-                                if(item.id === this.state.activeMealType) {
-                                    return <li key={item.id} className='active'>{item.name}</li>
-                                } else {
-                                    return <li key={item.id} onClick={() => this.changeType(item.id)}>{item.name}</li>
-                                }
+                            if(item.id === this.state.productsFilter.mealTypeId) {
+                                return <li key={item.id} className='active'>{item.name}</li>
+                            } else {
+                                return <li key={item.id} onClick={() => this.changeType(item.id)}>{item.name}</li>
+                            }
 
-                        }) }
+                        })}
                     </ul>
                 </nav>
+                <div className='product-list'>
+                    <ul>
+                        { this.props.products.map((item) => {
+                            return <li key={item.id} className='active' onClick={() => this.addProductToOrder(item)}>{item.name}{item.price}</li>
+                        })}
+                    </ul>
+                </div>
             </section>
         );
     }
@@ -75,13 +95,16 @@ function mapDispatchToProps(dispatch) {
         closeLeftBar,
         disableRightBar,
         closeRightBar,
-        getMealTypes
+        getMealTypes,
+        getProducts,
+        addProduct
     }, dispatch);
   }
 
   function mapStateToProps(state) {
     return {
-      mealTypes: state.mealTypes
+      mealTypes: state.mealTypes,
+      products: state.products
     }
   }
 

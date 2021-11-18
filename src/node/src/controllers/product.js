@@ -2,11 +2,11 @@ import mealType from '../models/mealType';
 import product from '../models/product';
 
 export const getProducts = async (req, res) => {
-
-  let products = await product.findAll();
-
+  let products = await product.findAll({
+    where: req.query
+  });
   res.send({
-      data: products
+    data: products
   });
 }
 
