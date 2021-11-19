@@ -6,8 +6,8 @@ all: init up
 init: ##@develompent install dependencies (back and front)
 
 	# Update dependencies via npm
-	docker-compose run node npm ci"
-	docker-compose run react npm ci"
+	docker-compose run node npm ci
+	docker-compose run react npm ci
 
 up: ##@development Run application stack
 
@@ -16,7 +16,7 @@ up: ##@development Run application stack
 
 down: ##@development Down stack
 
-	# Run Stack
+	# Stop Stack
 	docker-compose down
 
 # Help based on https://gist.github.com/prwhite/8168133 thanks to @nowox and @prwhite

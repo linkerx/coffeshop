@@ -7,15 +7,13 @@ import db from './config/db';
 import mealTypesRouter from './routes/mealType';
 import mealTimesRouter from './routes/mealTime';
 import productsRouter from './routes/product';
+import devRouter from './routes/dev';
 
 const app = express();
 
 db.authenticate()
-    .then(() => { db.sync(/*{force: true}*/)
-        .then(result => {
-            console.log('Database connected');
-        })
-        .catch(err => {console.log(err.message)});
+    .then(() => { 
+        console.log('Database connected');
     })
     .catch(err => {console.log(err.message)});
 
@@ -28,5 +26,8 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/product', productsRouter);
 app.use('/mealType', mealTypesRouter);
 app.use('/mealTime', mealTimesRouter);
+
+// Dev Routes
+app.use('/dev', devRouter);
 
 export default app;
