@@ -7,8 +7,8 @@ class OrderBill extends React.Component {
   render() {
     return (
       <div className='order-bill'>
-        <i className="fas fa-bell"></i>
-        <div className='bill'>{this.props.order && this.props.order.bill}</div>
+        <i className="fas fa-cash-register"></i>
+        <div className='bill'>{this.props.order && '$' + this.props.order.bill.toFixed(2)}</div>
       </div>
     )
   }
