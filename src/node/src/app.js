@@ -28,6 +28,8 @@ app.use('/mealType', mealTypesRouter);
 app.use('/mealTime', mealTimesRouter);
 
 // Dev Routes
-app.use('/dev', devRouter);
+if(process.env.NODE_ENV === 'development') {
+    app.use('/dev', devRouter);
+}
 
 export default app;

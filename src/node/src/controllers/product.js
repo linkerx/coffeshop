@@ -1,15 +1,34 @@
 import mealType from '../models/mealType';
 import product from '../models/product';
+import combo from '../models/combo';
 
 export const getProducts = async (req, res) => {
+  let theQuery = Object.assign(req.query,{isCombo:false});
   let products = await product.findAll({
-    where: req.query
+    where: theQuery
   });
   res.send({
     data: products
   });
 }
 
+/*
+export const getCombos = async (req, res) => {
+  let products = await product.findAll({
+    where: {
+      isCombo: true
+    },
+    include: [{
+      model: product, 
+      as: 'parent'
+    }]
+  })
+  
+  res.send({
+    data: products
+  });
+}
+*/
 export const createProduct = async (req, res) => {
   const { name, price, mealTypeId } = req.body;
   

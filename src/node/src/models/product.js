@@ -7,18 +7,29 @@ const product = db.define(
     'product',
     {
         id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING,
             unique: true,
         },
+        isCombo: {
+            type: DataTypes.BOOLEAN,
+        },
+        image: {
+            type: DataTypes.STRING,
+        },
         price: {
             type: DataTypes.DECIMAL(10,2),
         },
-                    
+        discount: {
+            type: DataTypes.INTEGER,
+        },
+        tax: {
+            type: DataTypes.INTEGER,
+        }
     },
     {
         timestamps: true,

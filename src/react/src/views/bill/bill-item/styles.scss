@@ -1,0 +1,22 @@
+#bill .items .bill-item {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+#bill .items .bill-item div {
+}
+
+#bill .items .bill-item .item-name {
+    width: auto;
+    flex: 1
+}
+
+#bill .items .bill-item .item-price {
+    width: 80px;
+    text-align: right;
+}
+#bill .items .bill-item .item-total {
+    width: 80px;
+    text-align: right;
+}

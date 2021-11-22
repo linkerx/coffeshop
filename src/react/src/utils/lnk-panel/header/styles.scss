@@ -24,3 +24,11 @@ section#panel header > .wrapper {
   height: 100%;
   position: absolute;
 }
+
+section#panel header .return {
+  float: right;
+  margin-right: 20px;
+  margin-top: 18px;
+  color: $color-3;
+  cursor:pointer;
+}

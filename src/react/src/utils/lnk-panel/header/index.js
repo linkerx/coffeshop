@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom'
 import './styles.scss';
 
 import LnkPanelLogo from './logo';
-//import LnkPanelMainMenu from './main-menu';
+import { Route, Switch } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import OrderBill from './order-bill';
 
 class LnkPanelHeader extends React.Component {
@@ -22,7 +23,10 @@ class LnkPanelHeader extends React.Component {
       <header className={styleClass}>
           <div className='wrapper'>
             <LnkPanelLogo />
-            <OrderBill />
+            <Switch>
+              <Route exact path="/menu" component={OrderBill} />
+              <Route exact path="/bill" render={() => <div className='return'><Link to='/menu'>Return to Menu</Link></div>} />
+            </Switch>
           </div>
       </header>
     )

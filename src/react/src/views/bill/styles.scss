@@ -1,0 +1,63 @@
+@import 'styles/variables/mqueries.scss';
+@import 'styles/variables/colors.scss';
+
+#bill {
+    & .message {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 36px;
+        font-style: italic;
+        color: $color-2;
+    }
+
+    & .wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        & .paper {
+            margin-top: 50px;
+            width: 500px;
+            max-width: 100%;
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px 0px #000;
+
+            & .header {
+                text-align: center;
+            }
+
+            & .items {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            & .taxes {
+                text-align: center;
+                
+                & .taxes-items {
+                    display: flex;
+                    width: 100%;
+
+                    & .tax-name {
+                        text-align: left;
+                        flex: 1;
+                    }
+                    
+                    & .total {
+                        width: 80px;
+                        text-align: right;
+                    }
+                }
+            }
+
+            & .total {
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+

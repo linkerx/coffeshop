@@ -8,12 +8,12 @@ import { disableRightBar, closeRightBar } from 'actions/panel/rightbar';
 import { openHeader } from 'actions/panel/header';
 
 import { getMealTypes } from 'actions/products/mealTypes';
-import { getProducts } from 'actions/products/products';
-import { addProduct } from 'actions/order/order';
+import { getProducts, getCombos } from 'actions/products/products';
 
+import Product from './product';
+import Combo from './combo';
 
 import './styles.scss';
-import { __esModule } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Menu extends React.Component {
 
@@ -27,7 +27,6 @@ class Menu extends React.Component {
         }
 
         this.changeType = this.changeType.bind(this);
-        this.addProductToOrder = this.addProductToOrder.bind(this);
     }
 
     componentDidMount(){
@@ -37,6 +36,7 @@ class Menu extends React.Component {
         this.props.disableRightBar();
         this.props.closeRightBar();
         this.props.getMealTypes();
+        this.props.getCombos();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -48,7 +48,6 @@ class Menu extends React.Component {
         if(prevState.productsFilter !== this.state.productsFilter ) {
             this.props.getProducts(this.state.productsFilter);
         }
-
     }
 
     changeType(id) {
@@ -57,31 +56,37 @@ class Menu extends React.Component {
         })
     }
 
-    addProductToOrder(item) {
-        this.props.addProduct(item);
-    }
-
     render() {
         return(
             <section id='menu'>
+                <div className='combos-list'>
+                    { this.props.combos.map((item) => {
+                        return <Combo key={item.id} item={item} />
+                    })}
+                </div>
                 <nav className='sections'>
                     <ul>
                         { this.props.mealTypes.map((item) => {
+                            let count = 0;
+                            if(typeof(this.props.order.byType[item.id]) !== 'undefined') {
+                                count = this.props.order.byType[item.id];
+                            }
                             if(item.id === this.state.productsFilter.mealTypeId) {
-                                return <li key={item.id} className='active'>{item.name}</li>
+                                return <li key={item.id} className='active'>{item.name} {count > 0 && <span>({count})</span>}</li>
                             } else {
-                                return <li key={item.id} onClick={() => this.changeType(item.id)}>{item.name}</li>
+                                return <li key={item.id} onClick={() => this.changeType(item.id)}>{item.name} {count > 0 && <span>({count})</span>}</li>
                             }
 
                         })}
                     </ul>
                 </nav>
                 <div className='product-list'>
-                    <ul>
-                        { this.props.products.map((item) => {
-                            return <li key={item.id} className='active' onClick={() => this.addProductToOrder(item)}>{item.name}{item.price}</li>
-                        })}
-                    </ul>
+                    { this.props.products.map((item) => {
+                        return <Product key={item.id} item={item} />
+                    })}
+                </div>
+                <div className='images-credits'>
+                    All products images extracted from <a href="http://www.freepik.com">freepik</a>
                 </div>
             </section>
         );
@@ -97,14 +102,16 @@ function mapDispatchToProps(dispatch) {
         closeRightBar,
         getMealTypes,
         getProducts,
-        addProduct
+        getCombos
     }, dispatch);
   }
 
   function mapStateToProps(state) {
     return {
       mealTypes: state.mealTypes,
-      products: state.products
+      products: state.products,
+      combos: state.combos,
+      order: state.order
     }
   }
 
