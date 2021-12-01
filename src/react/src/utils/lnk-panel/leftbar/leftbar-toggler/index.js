@@ -1,36 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { toggleLeftBar } from 'actions/panel/leftbar';
+import React, { useContext } from 'react';
+import { PanelConfigContext } from 'utils/lnk-panel/panelconfig';
 import './styles.scss';
 
-class LnkPanelLeftBarToggler extends React.Component {
-  render() {
+const LnkPanelLeftBarToggler = () => {
+
+  const leftbarOpened = useContext(PanelConfigContext).leftbarOpened;
+  const leftbarEnabled = useContext(PanelConfigContext).leftbarEnabled;
 
     var iconClass = "fas fa-times";
-    if(!this.props.leftbar_opened) {
+    if(!leftbarOpened[0]) {
       iconClass = "fas fa-bars";
     }
 
     return (
       <div className='leftbar-toggler'>
-          { this.props.leftbar_enabled &&
-            <i className={iconClass} onClick={() => this.props.toggleLeftBar()}></i>
+          { leftbarEnabled[0] &&
+            <i className={iconClass} onClick={() => leftbarOpened[1](!leftbarOpened[0])}></i>
           }
       </div>
     )
-  }
 }
 
-function mapStateToProps(state) {
-  return {
-    leftbar_opened: state.leftbar_opened,
-    leftbar_enabled: state.leftbar_enabled
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleLeftBar: toggleLeftBar }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LnkPanelLeftBarToggler)
+export default LnkPanelLeftBarToggler

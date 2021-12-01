@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, Switch} from "react-router-dom";
-import PrivateRoute from 'routers/private';
+import { Switch } from "react-router-dom";
+import PanelRoute from 'utils/lnk-panel/route';
 
 import Home from 'views/home';
 import Menu from 'views/menu';
@@ -10,10 +10,10 @@ class MainRouter extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/menu" component={Menu} />
-        <Route exact path="/bill" component={Bill} />
-        <Route component={NotFound} />
+        <PanelRoute exact path="/" component={Home} private={false}/>
+        <PanelRoute exact path="/menu" component={Menu} private={false} configuration={{ headerOpened: true }} />
+        <PanelRoute exact path="/bill" component={Bill} private={false} configuration={{ headerOpened: true }} />
+        <PanelRoute component={NotFound} private={false} />
       </Switch>
     )
   }

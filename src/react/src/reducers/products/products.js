@@ -1,4 +1,4 @@
-export default function(state = [],action) {
+const ProductsReducer = (state = [],action) => {
   switch(action.type){
     case 'PRODUCTS_FETCH':
       return action.payload;
@@ -6,3 +6,4 @@ export default function(state = [],action) {
   }
   return state
 }
+export default ProductsReducer;

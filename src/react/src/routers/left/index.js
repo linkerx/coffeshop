@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
-import PrivateRoute from 'routers/private';
+import { Switch } from "react-router-dom";
+//import PanelRoute from 'utils/lnk-panel/route';
 
 class LeftRouter extends React.Component {
   render() {

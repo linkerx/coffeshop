@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import './styles.scss';
 
@@ -7,8 +6,6 @@ class BillProduct extends React.Component {
 
     render() {
         const item = this.props.product.item;
-        //console.log("BILL-ITEM: ",item);
-
         const count = this.props.product.count;
         const uprice = parseFloat(item.price);
         const tax = ((uprice*item.tax)/100)*count;

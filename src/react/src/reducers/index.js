@@ -1,12 +1,7 @@
 import { combineReducers } from 'redux';
 
-/* panel */
-import MenuReducer from './panel/menu/items';
-import HeaderOpenedReducer from './panel/header/opened';
-import LeftBarOpenedReducer from './panel/leftbar/opened';
-import LeftBarEnabledReducer from './panel/leftbar/enabled';
-import RightBarOpenedReducer from './panel/rightbar/opened';
-import RightBarEnabledReducer from './panel/rightbar/enabled';
+/* system */
+import UserAuthenticatedReducer from './user/authenticated';
 
 /* products */
 import MealTypesReducer from './products/mealtypes';
@@ -17,13 +12,9 @@ import CombosReducer from './products/combos';
 import OrderReducer from './order/order';
 
 const rootReducer = combineReducers({
-  /* panel */
-  menu: MenuReducer,
-  header_opened: HeaderOpenedReducer,
-  leftbar_opened: LeftBarOpenedReducer,
-  leftbar_enabled: LeftBarEnabledReducer,
-  rightbar_opened: RightBarOpenedReducer,
-  rightbar_enabled: RightBarEnabledReducer,
+
+  /* system */
+  user: UserAuthenticatedReducer,
 
   /* products */
   mealTypes: MealTypesReducer,

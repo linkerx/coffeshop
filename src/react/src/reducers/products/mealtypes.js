@@ -1,9 +1,9 @@
-export default function(state = [],action) {
+const MealTypesReducer = (state = [],action) => {
   switch(action.type){
     case 'MEALTYPES_FETCH':
-      console.log(action);
       return action.payload;
     default:
   }
   return state
 }
+export default MealTypesReducer;

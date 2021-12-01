@@ -1,44 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { PanelConfigContext } from 'utils/lnk-panel/panelconfig';
 import LnkPanelLeftBarToggler from './leftbar-toggler';
 import './styles.scss';
 
-class LnkPanelLeftBar extends React.Component {
-  render() {
+const LnkPanelLeftBar  = (props) => {
 
-    var rightbarClass = '';
-    if(this.props.leftbar_opened != null){
-      rightbarClass = 'opened';
-      if(!this.props.leftbar_opened) {
-        rightbarClass = 'closed';
-      }
-    }
+  const headerOpened = useContext(PanelConfigContext).headerOpened[0];
+  const leftbarOpened = useContext(PanelConfigContext).leftbarOpened[0];
 
-    var headerClass = '';
-    if(this.props.header_opened != null){
-      headerClass = 'header_opened';
-      if(!this.props.header_opened) {
-        headerClass = 'header_closed';
-      }
-    }
-
-    var itemClass= rightbarClass+' '+headerClass;
-
-    return (
-      <nav id='leftbar' className={itemClass}>
-        <LnkPanelLeftBarToggler />
-        {this.props.children}
-      </nav>
-    )
+  var leftbarClass = 'closed';
+  if(leftbarOpened){
+    leftbarClass = 'opened';
   }
+
+  var headerClass = 'header_closed';
+  if(headerOpened){
+    headerClass = 'header_opened';
+  }
+
+  var itemClass= leftbarClass+' '+headerClass;
+
+  return (
+    <nav id='leftbar' className={itemClass}>
+      <LnkPanelLeftBarToggler />
+      {props.children}
+    </nav>
+  )
 }
 
-function mapStateToProps(state) {
-  return {
-    leftbar_opened: state.leftbar_opened,
-    header_opened: state.header_opened
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(LnkPanelLeftBar))
+export default LnkPanelLeftBar;

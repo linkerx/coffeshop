@@ -1,4 +1,4 @@
-export default function(state = { products: {}, bill: 0 , byType: {}, taxes: 0}, action) {
+const OrderReducer = (state = { products: {}, bill: 0 , byType: {}, taxes: 0}, action) => {
     switch(action.type){
         case 'ORDER_PRODUCT_ADD': {
             const item = action.payload;
@@ -60,4 +60,5 @@ export default function(state = { products: {}, bill: 0 , byType: {}, taxes: 0},
     }
     return state;
 }
+export default OrderReducer;
   

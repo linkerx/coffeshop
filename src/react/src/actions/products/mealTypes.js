@@ -1,6 +1,6 @@
 import tokenAxios from 'utils/token-axios';
 
-export function getMealTypes() {
+export const getMealTypes = () => {
   const axios = tokenAxios();
   return (dispatch) => {
     axios.get('/mealType').then((response) => {

@@ -1,4 +1,4 @@
-export default function(state = [],action) {
+const CombosReducer = (state = [],action) => {
     switch(action.type){
       case 'COMBOS_FETCH':
         return action.payload;
@@ -6,4 +6,4 @@ export default function(state = [],action) {
     }
     return state
   }
-  
+export default CombosReducer;

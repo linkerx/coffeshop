@@ -32,7 +32,7 @@ class Product extends React.Component {
 
         return (
             <div className='product'>
-                <div className='image'><img src={item.image} /></div>
+                <div className='image'><img src={item.image} alt={item.name} /></div>
                 <div className='name'>{item.name}</div>
                 <div className='price'>{'$' + parseFloat(item.price).toFixed(2)}</div>
                 <i onClick={() => this.addProductToOrder(item)} className="add-product fas fa-plus"></i>

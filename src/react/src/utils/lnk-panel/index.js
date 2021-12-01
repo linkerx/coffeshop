@@ -1,6 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+
 import LnkPanelHeader from './header';
 import LnkPanelMainSection from './mainsection';
 import LnkPanelLeftBar from './leftbar';
@@ -9,11 +8,22 @@ import MainRouter from 'routers/main';
 import LeftRouter from 'routers/left';
 import RightRouter from 'routers/right';
 
+import { PanelConfigContext } from './panelconfig';
+
 import './styles.scss';
 
-class LnkPanel extends React.Component {
-  render() {
+const LnkPanel = () => {
+  
+  const panelConfig = {
+    headerOpened: useState(false),
+    leftbarOpened: useState(false),
+    leftbarEnabled: useState(false),
+    rightbarOpened: useState(false),
+    rightbarEnabled: useState(false),
+  }
+
     return (
+      <PanelConfigContext.Provider value={panelConfig}>
       <section id='panel'>
         <LnkPanelHeader />
         <div className='wrapper'>
@@ -22,16 +32,8 @@ class LnkPanel extends React.Component {
           <LnkPanelRightBar><RightRouter /></LnkPanelRightBar>
         </div>
       </section>
+      </PanelConfigContext.Provider>
     );
-  }
 }
 
-function mapStateToProps(state) {
-  return {
-    header_opened: state.header_opened,
-    leftbar_opened: state.leftbar_opened,
-    rightbar_opened: state.rightbar_opened
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(LnkPanel))
+export default LnkPanel
