@@ -48,8 +48,9 @@ const Combo = (props) => {
             <div className='image'>
                 <ul>
                     { images && images.map((img,index) => {
+                        let liStyle={width: (100/images.length)+'%'};
                         return (
-                        <li key={index}>
+                        <li key={index} style={liStyle}>
                             <ul>
                             {
                                 Array.from(Array(img.count), (e, i) => {

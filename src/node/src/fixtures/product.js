@@ -330,13 +330,23 @@ export default [
         }
     },
     // COMBOS
-        {
+    {
         "model": "product",
         "data": {
             "id": 26,
             "name": "Latte and 2 Crossaints",
             "isCombo": true,
             "discount": 30,
+            "tax": 7
+        }
+    },
+    {
+        "model": "product",
+        "data": {
+            "id": 27,
+            "name": "Juice's flavor testing",
+            "isCombo": true,
+            "discount": 50,
             "tax": 7
         }
     },
