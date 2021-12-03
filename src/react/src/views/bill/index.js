@@ -6,8 +6,6 @@ import './styles.scss';
 
 const Bill = () => {
     const order = useSelector((state) => state.order)
-
-    const products = order.products;
     const total = parseFloat(order.bill) + parseFloat(order.taxes);
 
     return(
@@ -23,9 +21,9 @@ const Bill = () => {
                     </div>
 
                     <div className='items'>
-                    { Object.entries(products).map((product) => {
+                    { Object.entries(order.products).map((product) => {
                         return (
-                            <BillProduct key={product[0]} product={product[1]} showTax={true}/>
+                            <BillProduct key={product[0]} product={product[1]} showTax={false}/>
                         )
                     })}
                     </div>

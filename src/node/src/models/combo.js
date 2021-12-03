@@ -1,21 +1,22 @@
 import db from '../config/db';
 import { DataTypes } from 'sequelize';
-import product from './product';
+import product from '../models/product';
 
 const combo = db.define(
     'combo',
     {
         count: {
             type: DataTypes.INTEGER,
-            defaultValue: 0
         },
     },
     {
+        timestamps: false,
         freezeTableName: true,
     }
-)
+);
 
-combo.belongsTo(product,{ as: 'parent'})
-//combo.belongsTo(product,{ as: 'child'})
+//product.belongsTo(product, {as: "parent", foreingKey: "parentId", through: "combo"})
+product.belongsToMany(product, {as: "child", foreignKey: "parentId", through: "combo"})
 
 export default combo;
+

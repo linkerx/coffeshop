@@ -5,10 +5,10 @@ import db from '../config/db';
 // FIXTURES
 import mealTypeModel from '../models/mealType';
 import productModel from '../models/product';
-//import comboModel from '../models/combo';
+import comboModel from '../models/combo';
 import mealTypeFixtures from '../fixtures/mealType';
 import productFixtures from '../fixtures/product';
-//import comboFixtures from '../fixtures/combo';
+import comboFixtures from '../fixtures/combo';
 
 const router = Router();
 
@@ -38,10 +38,6 @@ router.get('/load-fixtures', async (req, res) => {
         .then(() => {
             sequelize_fixtures.loadFixtures(productFixtures, { product: productModel})
             .then(() => {
-                return res.status(200).send({
-                    message: "Fixtures loaded"
-                });
-                /*
                 sequelize_fixtures.loadFixtures(comboFixtures, { combo: comboModel})
                 .then(() => {
                     return res.status(200).send({
@@ -52,8 +48,6 @@ router.get('/load-fixtures', async (req, res) => {
                         message: err.message
                     });
                 });
-                */
-                
             }).catch((err)=>{
                 return res.status(200).send({
                     message: err.message

@@ -3,9 +3,9 @@ import { getProducts, getCombos, createProduct, deleteProduct } from '../control
 const router = Router();
 
 router.get('/', getProducts);
-//router.get('/combos', getCombos);
 router.post('/', createProduct);
 router.delete('/:id', deleteProduct);
-//router.put('/:id', updateProduct);
+
+router.get('/combos', getCombos);
 
 export default router;

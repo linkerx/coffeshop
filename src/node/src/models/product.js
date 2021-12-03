@@ -43,8 +43,8 @@ mealTime.hasMany(product);
 product.belongsTo(mealType);
 mealType.hasMany(product);
 
-product.belongsToMany(product, {as: "parent", foreingKey: "parentId", through: "combo"})
-//product.belongsToMany(product, {as: "child", foreignKey: "childId", through: "combo"})
+//product.belongsTo(product, {as: "parent", foreingKey: "parentId", through: "combo"})
+//product.belongsToMany(product, {as: "child", foreignKey: "parentId", through: "combo"})
 
 export default product;
 

@@ -9,3 +9,7 @@ export function removeProduct(product) {
         dispatch({type: 'ORDER_PRODUCT_REMOVE', payload: product});
     }
 }
+
+export const changeCombo = (combo) => (dispatch) => {
+    return dispatch({type: 'ORDER_CHANGE_COMBO', payload: combo});
+}

@@ -3,7 +3,7 @@ export default [
         "model": "combo",
         "data": {
             "parentId": 26,
-            "productId": 3,
+            "childId": 3,
             "count": 1
         }
     },
@@ -11,7 +11,7 @@ export default [
         "model": "combo",
         "data": {
             "parentId": 26,
-            "productId": 7,
+            "childId": 7,
             "count": 2
         }
     },

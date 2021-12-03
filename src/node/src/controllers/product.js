@@ -12,7 +12,7 @@ export const getProducts = async (req, res) => {
   });
 }
 
-/*
+
 export const getCombos = async (req, res) => {
   let products = await product.findAll({
     where: {
@@ -20,7 +20,7 @@ export const getCombos = async (req, res) => {
     },
     include: [{
       model: product, 
-      as: 'parent'
+      as: 'child'
     }]
   })
   
@@ -28,7 +28,7 @@ export const getCombos = async (req, res) => {
     data: products
   });
 }
-*/
+
 export const createProduct = async (req, res) => {
   const { name, price, mealTypeId } = req.body;
   

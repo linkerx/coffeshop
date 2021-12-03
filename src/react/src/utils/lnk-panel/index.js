@@ -15,7 +15,7 @@ import './styles.scss';
 const LnkPanel = () => {
   
   const panelConfig = {
-    headerOpened: useState(false),
+    headerOpened: useState(true),
     leftbarOpened: useState(false),
     leftbarEnabled: useState(false),
     rightbarOpened: useState(false),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getMealTypes } from 'actions/products/mealTypes';
-import { getProducts } from 'actions/products/products';
+import { getProducts, getCombos, setFoundCombo, setNotFoundCombo } from 'actions/products/products';
 
 import Product from './product';
 import Combo from './combo';
@@ -19,6 +19,7 @@ const Menu = () => {
 
     useEffect(() => {
         dispatch(getMealTypes());
+        dispatch(getCombos());
     },[dispatch])
 
     useEffect(() => {
@@ -30,6 +31,28 @@ const Menu = () => {
     useEffect(() => {
         dispatch(getProducts(filter));
     },[dispatch, filter])
+
+    useEffect(() => {
+        combos.forEach((combo) => {
+            let found = true;
+            combo.child.forEach((child) => {
+                if (typeof(order.products[child.id]) !== 'undefined') {
+                    if(order.products[child.id].count < child.combo.count) {
+                        found = false;
+                    }
+                } else {
+                    found = false;
+                }
+            })
+            if(found) {
+                dispatch(setFoundCombo(combo.id));
+            } else {
+                if (typeof(combo.found) !== 'undefined' && combo.found) {
+                    dispatch(setNotFoundCombo(combo.id));
+                }
+            }
+        });
+    },[order])
 
     return(
         <section id='menu'>

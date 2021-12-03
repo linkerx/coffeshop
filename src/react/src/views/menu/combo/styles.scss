@@ -16,7 +16,27 @@ div.combo .image{
     margin-top: 15px;
 }
 
-div.combo .image img{
+div.combo .image > ul{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+div.combo .image > ul li{
+    list-style: none;
+    flex-grow: 1;
+    max-height: 100%;
+}
+
+div.combo .image > ul > li > ul {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+div.combo .image > ul > li img {
     max-height: 100%;
 }
 
@@ -27,9 +47,29 @@ div.combo .name {
 }
 
 div.combo .price {
-    margin-top: 10px;
+    display: flex;
     font-size: 20px;
+    width: 120px;
+    margin: 0 auto;
+    align-items: center;
 }
+
+div.combo .price div {
+    flex-grow: 1;
+}
+
+div.combo .price .original_price {
+    font-size: 14px;
+    text-decoration: line-through;
+    width: 40%;
+}
+
+div.combo .price .discount_price {
+    font-size: 24px;
+    color: green;
+    width: 60%;
+}
+
 
 div.combo i.add-product {
     position: absolute;
@@ -63,4 +103,29 @@ div.combo .count {
     width: 30px;
     height: 23px;
     color: $color-3;
+}
+
+div.combo .found {
+    position: absolute;
+    z-index: 9999;
+    top: -10px;
+    left: -10px;
+    color: orange;
+    background-color: white;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+div.combo .found i{
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+div.combo .discount {
+    color: red;
+    font-size: 12px;
+    margin: auto;
+    font-weight: bold;
 }

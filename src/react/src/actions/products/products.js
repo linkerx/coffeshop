@@ -21,3 +21,11 @@ export function getCombos(filter) {
     });
   }
 }
+
+export const setFoundCombo = (id) => (dispatch) => {
+  return dispatch({type: 'COMBO_FOUND', payload: id});
+}
+
+export const setNotFoundCombo = (id) => (dispatch) => {
+  return dispatch({type: 'COMBO_NOT_FOUND', payload: id});
+}

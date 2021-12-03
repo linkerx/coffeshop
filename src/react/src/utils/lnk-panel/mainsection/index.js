@@ -1,51 +1,36 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { PanelConfigContext } from 'utils/lnk-panel/panelconfig';
 import './styles.scss';
 
-class LnkPanelMainSection extends React.Component {
-  render() {
-    var leftbarClass = '';
-    if(this.props.leftbar_opened != null) {
-      leftbarClass = 'leftbar_closed';
-      if(this.props.leftbar_opened) {
-        leftbarClass = 'leftbar_opened';
-      }
-    }
+const LnkPanelMainSection = (props) => {
 
-    var rightbarClass = '';
-    if(this.props.rightbar_opened != null) {
-      rightbarClass = 'rightbar_closed';
-      if(this.props.rightbar_opened) {
-        rightbarClass = 'rightbar_opened';
-      }
-    }
-
-    var headerClass = '';
-    if(this.props.header_opened != null) {
-      headerClass = 'header_opened';
-      if (!this.props.header_opened) {
-        headerClass = 'header_closed';
-      }
-    }
-
-    var mainClass = leftbarClass+' '+rightbarClass+' '+headerClass;
-    return (
-      <section id="main" className={mainClass}>
-        <div className='wrapper'>
-          {this.props.children}
-        </div>
-      </section>
-    )
+  const headerOpened = useContext(PanelConfigContext).headerOpened[0];
+  const leftbarOpened = useContext(PanelConfigContext).leftbarOpened[0];
+  const rightbarOpened = useContext(PanelConfigContext).rightbarOpened[0];
+  
+  let leftbarClass = 'leftbar_closed';
+  if(leftbarOpened) {
+    leftbarClass = 'leftbar_opened';
   }
+
+  let rightbarClass = 'rightbar_closed';
+  if(rightbarOpened) {
+    rightbarClass = 'rightbar_opened';
+  }
+
+  let headerClass = 'header_opened';
+  if (!headerOpened) {
+    headerClass = 'header_closed';
+  }
+
+  let mainClass = leftbarClass+' '+rightbarClass+' '+headerClass;
+  return (
+    <section id="main" className={mainClass}>
+      <div className='wrapper'>
+        {props.children}
+      </div>
+    </section>
+  )
 }
 
-function mapStateToProps(state) {
-  return {
-    header_opened: state.header_opened,
-    leftbar_opened: state.leftbar_opened,
-    rightbar_opened: state.rightbar_opened
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(LnkPanelMainSection))
+export default LnkPanelMainSection;
