@@ -24,6 +24,7 @@ const LnkPanelHeader  = () => {
           <Switch>
             <Route exact path="/menu" component={OrderBill} />
             <Route exact path="/bill" render={() => <div className='return'><Link to='/menu'>Return to Menu</Link></div>} />
+            <Route exact path="/order" render={() => <div className='return'><Link to='/menu'>Return to Menu</Link></div>} />
           </Switch>
         </div>
     </header>

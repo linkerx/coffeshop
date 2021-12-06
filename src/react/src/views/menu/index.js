@@ -36,8 +36,8 @@ const Menu = () => {
         combos.forEach((combo) => {
             let found = true;
             combo.child.forEach((child) => {
-                if (typeof(order.products[child.id]) !== 'undefined') {
-                    if(order.products[child.id].count < child.combo.count) {
+                if (typeof(order.products_bill[child.id]) !== 'undefined') {
+                    if(order.products_bill[child.id].count < child.combo.count) {
                         found = false;
                     }
                 } else {

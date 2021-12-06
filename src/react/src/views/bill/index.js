@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import BillProduct from './bill-item';
 
 import './styles.scss';
@@ -21,7 +22,7 @@ const Bill = () => {
                     </div>
 
                     <div className='items'>
-                    { Object.entries(order.products).map((product) => {
+                    { Object.entries(order.products_bill).map((product) => {
                         return (
                             <BillProduct key={product[0]} product={product[1]} showTax={false}/>
                         )
@@ -39,6 +40,7 @@ const Bill = () => {
                     <div className='total'>
                         <h2>Total: {'$' + total.toFixed(2)}</h2>
                     </div>
+                    <Link to='/order'>View Kitchen's Order</Link>
                 </div>
             </div>
         </section>

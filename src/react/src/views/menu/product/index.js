@@ -9,10 +9,10 @@ const Product = (props) => {
     const dispatch = useDispatch();
 
     const item = props.item;
-    const showMinus = typeof(order.products[item.id]) !== 'undefined';
+    const showMinus = typeof(order.products_bill[item.id]) !== 'undefined';
     let count = 0;
     if(showMinus) {
-        count = order.products[item.id].count;
+        count = order.products_bill[item.id].count;
     }
 
     return (

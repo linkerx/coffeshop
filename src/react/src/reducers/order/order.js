@@ -1,4 +1,4 @@
-const OrderReducer = (state = { products: {}, bill: 0 , byType: {}, taxes: 0}, action) => {
+const OrderReducer = (state = { products_order: {}, products_bill: {}, bill: 0 , byType: {}, taxes: 0}, action) => {
     switch(action.type){
         case 'ORDER_PRODUCT_ADD': {
             return AddProduct(state,action.payload);
@@ -27,14 +27,28 @@ const OrderReducer = (state = { products: {}, bill: 0 , byType: {}, taxes: 0}, a
 export default OrderReducer;
 
 const AddProduct = (order, item) => {
+
+    const addToList = (list, item, count) => {
+        let newList = Object.assign(list); 
+        if(typeof(list[item.id]) === 'undefined') {
+            newList[item.id] = {};
+            newList[item.id].item = item;
+            newList[item.id].count = count;
+        } else {
+            newList[item.id].count = newList[item.id].count + count;
+        }
+        return newList;
+    }
+
     // products
-    let products = Object.assign(order.products); 
-    if(typeof(products[item.id]) === 'undefined') {
-        products[item.id] = {};
-        products[item.id].item = item;
-        products[item.id].count = 1;
+    let products_bill = addToList(order.products_bill, item, 1); 
+    let products_order = order.products_order;
+    if(item.isCombo) {
+        item.child.forEach((child) => {
+           products_order = addToList(products_order, child, child.combo.count);
+        });
     } else {
-        products[item.id].count ++;
+        products_order = addToList(products_order, item, 1);
     }
 
     // byType
@@ -49,18 +63,31 @@ const AddProduct = (order, item) => {
     let bill = parseFloat(order.bill) + parseFloat(item.price);
     // taxes
     let taxes = parseFloat(order.taxes) + (parseFloat(item.price)*item.tax/100);
-    return {products, bill, byType, taxes};
+    return {products_order, products_bill, bill, byType, taxes};
 }
 
 const RemoveProduct = (order, item) => {
-    let products = Object.assign(order.products); 
-    if(typeof(products[item.id]) !== 'undefined') {
 
-        // products
-        if(products[item.id].count > 1) {
-            products[item.id].count --;
+    const remFromList = (list, item, count) => {
+        let newList = Object.assign(list); 
+        if(newList[item.id].count > count) {
+            newList[item.id].count =  newList[item.id].count - count;
         } else {
-            delete products[item.id];
+            delete newList[item.id];
+        }
+        return newList;
+    }   
+
+    if(typeof(order.products_bill[item.id]) !== 'undefined') {
+        
+        let products_bill = remFromList(order.products_bill, item, 1);
+        let products_order = order.products_order;
+        if(item.isCombo) {
+            item.child.forEach((child) => {
+                products_order = remFromList(products_order, child, child.combo.count);
+            });
+        } else {
+            products_order = remFromList(products_order, item, 1);
         }
 
         // byType
@@ -75,7 +102,7 @@ const RemoveProduct = (order, item) => {
         let bill = parseFloat(order.bill) - parseFloat(item.price);
         // taxes
         let taxes = parseFloat(order.taxes) - (parseFloat(item.price)*item.tax/100);
-        return {products, bill, byType, taxes};
+        return {products_order, products_bill, bill, byType, taxes};
     }
     return order;
 }

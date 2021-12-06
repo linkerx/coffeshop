@@ -9,10 +9,10 @@ const Combo = (props) => {
     const dispatch = useDispatch();
 
     let item = Object.assign(props.item);
-    const showMinus = typeof(order.products[item.id]) !== 'undefined';
+    const showMinus = typeof(order.products_bill[item.id]) !== 'undefined';
     let count = 0;
     if(showMinus) {
-        count = order.products[item.id].count;
+        count = order.products_bill[item.id].count;
     }
 
     let original_price = 0;
