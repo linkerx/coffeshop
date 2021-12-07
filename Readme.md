@@ -1,3 +1,18 @@
+## Agnos Challenge Coffeshop
+
+## Instructions
+
+1- clone repo
+2- make up
+3- call backend endpoint /dev/sync-db
+4- call backend endpoint /dev/load-fixtures
+
+## Live Demo
+
+https://agnos-challenge.linkerx.com.ar
+
+## Assignment
+
 Hi Diego,
 
 We very much appreciate your interest in Agnos!
