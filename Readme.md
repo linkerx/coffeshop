@@ -3,6 +3,7 @@
 ## Instructions
 
 - clone repo
+- run "make init"
 - run "make up"
 - call backend endpoint /dev/sync-db
 - call backend endpoint /dev/load-fixtures
