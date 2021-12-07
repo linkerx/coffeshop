@@ -2,10 +2,10 @@
 
 ## Instructions
 
-1- clone repo
-2- make up
-3- call backend endpoint /dev/sync-db
-4- call backend endpoint /dev/load-fixtures
+- clone repo
+- run "make up"
+- call backend endpoint /dev/sync-db
+- call backend endpoint /dev/load-fixtures
 
 ## Live Demo
 
